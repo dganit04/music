@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load app_tags %}
+{% block nav_songs%}
+class="active"
+{% endblock %}
+
+<!-- Show Songs in library -->
+{% block content %}
+<div class="wrapper">
+    <h3>My Music Library - <span class="book-count">{{ songs | length }} song(s)</span></h3>
+    <div>
+        {% include "mymusic/search.html" %}
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col"><a href="?order_by=title">Title</a></th>
+                <th scope="col"><a href="?order_by=artist">Artist</a></th>
+                <th scope="col"><a href="?order_by=album">Album</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% get_random songs=songs as ran_id %} <!-- call random popular-id, will use it later within if/endif -->
+            {% for song in songs %}
+            <tr>
+                <td>{{ song.title|upper }}</td>
+                <td><a href="{% url 'artist_detail' song.id %}?type=Song">{{ song.artist.name | upper }}</a></td>
+                <td><a href="{% url 'album_detail' song.id %}?type=Song">{{ song.album.title | upper }}</a>
+                    {% if songs|length > 1 %}
+                    <a href="{% url 'item_delete' song.id %}?type=Song&url=songs">
+                        <i class="material-icons">delete</i></a>
+                    {% endif %}
+
+                    {% if song.id == ran_id %} <!-- using custom tag here within if/endif -->
+                    <i class="material-icons popular" title="Most Popular">star</i>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load app_tags %}
+<!-- Show album details -->
+
+{% block content %}
+<div class="detail-container">
+    <div class="top-album clearfix">
+        <div class="{{album.className}} pull-left"></div>
+        <div class="top-info pull-left">
+            <div class="item-title">{{ album.title | capfirst }}</div>
+            <p><span class="by">by </span> <span class="name">{{ album.artist | capfirst }}</span></p>
+            <p class="year">{{ album.release_date }}</p>
+        </div>
+    </div>
+
+    {% if songs.count %}
+    <h4>All songs: ({{ songs | length }})</h4>
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Artist</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for song in songs %}
+        <tr>
+            <td>{{ song.title | upper }}</td>
+            <td>{{ song.artist.name | upper }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Sorry, this album is empty, pls add songs, Thanks ton!</p>
+    {% endif %}
+</div>
+{% endblock %}

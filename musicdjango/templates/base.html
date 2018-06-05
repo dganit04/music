@@ -1,0 +1,63 @@
+{% load staticfiles %}
+<!-- Appears at top of each html file -->
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Music project</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/themes/base/jquery-ui.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'reset.css' %}">
+        <link rel="stylesheet" href="{% static 'main.css' %}">
+        <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+    </head>
+    <body>
+
+
+        <div class="leftNav">
+            <a id="closeNav" class="closebtn">&times;</a>
+            <ul>
+                <li {% block nav_index %}{% endblock %}>
+                    <a href="{% url 'index' %}">Albums<i class="material-icons">queue_music</i></a>
+                    <a href="{% url 'album_create' %}"><i class="material-icons">library_add</i></a>
+                </li>
+                <li {% block nav_songs %}{% endblock %}>
+                    <a href="{% url 'songs' %}">Songs &nbsp;<i class="material-icons">library_music</i></a>
+                    <a href="{% url 'song_create' %}"><i class="material-icons">library_add</i></a>
+                </li>
+                <li {% block nav_artists %}{% endblock %}>
+                    <a href="{% url 'artists' %}">Artists &nbsp;<i class="material-icons">person_outline</i></a>
+                    <a href="{% url 'artist_create' %}"><i class="material-icons">library_add</i></a>
+                </li>
+                <li>
+                    <a href="{% url 'reset' %}" class="button">Reset &nbsp;&nbsp;<i class="material-icons">autorenew</i></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div id="openNav">&#9776;</div>
+            <h1 class="heading">My Music</h1>
+            <hr>
+            <div>
+                {% block content %} # every page will have diff content here
+                {% endblock content %}
+            </div>
+        </div>
+
+
+        <!--<script src="{% static 'jquery-1.11.0.min.js' %}"></script>-->
+        <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+        <script src="{% static 'bootstrap.min.js' %}"></script>
+        <script src="{% static 'myScript.js' %}"></script>
+    </body>
+</html>

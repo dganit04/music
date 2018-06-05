@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- Create new song -->
+
+{% block content %}
+<h3>Create New Song</h3>
+<form id="songForm" method="post" action="" class="form" data-albums-url="{% url 'ajax_load_albums' %}">{% csrf_token %}
+    <!--<form id="songForm" method="post" action="" class="form">{% csrf_token %}-->
+    <fieldset>
+        {% include "mymusic/form_snippets.html" %}
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-outline-primary">Save</button>
+                <a href="{% url 'index' %}" class="btn btn-outline-light">Cancel</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
+
+

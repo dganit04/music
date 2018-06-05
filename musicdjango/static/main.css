@@ -1,0 +1,161 @@
+body {font-family: "Lato", sans-serif; background: linear-gradient(to right, #1a1a1a, #111); color: #111; overflow-x: hidden;}
+.main {transition: margin-left .5s; padding: 16px; margin-left: 250px; position: relative; color: #818181;}
+.heading {font-size: 24px; margin: 40px 20px 20px; font-style: italic;}
+#openNav {top: 15px; left: 15px; font-size: 27px; display: none; transition: 0.3s;}
+#openNav:hover {color: #f1f1f1;}
+h3 { font-size: 20px; margin: 30px 0; text-align: center;}
+a.back {color: #99ccff; margin-left: 10px;}
+.wrapper {position: relative;}
+
+/********** custom scrollbar ****************/
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+/********** top page info ******************/
+.top-info {color: #ccc; text-align: center; margin: 30px 0 50px 0;}
+.artist-detail .top-info {margin: 30px auto 50px auto; width: 300px; height: 180px; border: 3px solid rgba(138,43,226, .4);
+    border-radius: 15px;}
+.artist-detail .top-info .item-title {margin-top: 35px;}
+.top-info p {margin: 10px 0;}
+.top-info .item-title {font-size: 30px; font-family: Helvetica; font-weight: bold; padding-bottom: 10px;}
+.top-info .by {font-size: 18px; color: #666;}
+.top-info .name {font-size: 20px; color: #aaa;}
+.top-info .year {font-size: 16px; color: #666;}
+
+/********** Album - index *******************/
+.title {font-family: cursive; position: absolute; font-size: 20px; width: 160px; text-align: center; top: 75px;
+    background-color: rgba(88,55,86, 0.8); left: 10px; padding: 7px;}
+.title span {display: inline-block; color: #fff; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.cursive {font-family: fantasy; font-size: 14px; margin: 0;}
+.cursive a {color: #818181;}
+.album-li, .artist-li {width: 182px; margin: 20px;}
+.pic {width: 180px; height: 180px; margin-bottom: 7px; background-image: url('img/img3.jpeg'); position: relative;}
+.actions {transform-origin: 0 100%; width: 100%; height: 24px; background: black; transition: transform .3s; transform: scaleY(0);
+    position: absolute; bottom: 0; background-color: rgba(0, 0, 0, 0.8);}
+.pic:hover .actions {transform: scaleY(1)}
+.pic a {position: absolute; top: 3px;}
+.pic a i {color: #ccc; font-size: 18px;}
+.pic a:hover i {color: #fff;}
+.pic a:nth-of-type(1) {left: 83px;}
+.pic a:nth-of-type(2) {right: 10px;}
+.pic a:nth-of-type(3) {left: 75px;}
+.album-pic-1 {background-image: url('img/img.jpeg'); background-size:cover}
+.album-pic-2 {background-image: url('img/img4.jpeg'); background-size:cover}
+.album-pic-3 {background-image: url('img/img3.jpeg'); background-size:cover}
+.album-pic-4 {background-image: url('img/img8.jpeg'); background-size:cover}
+.album-pic-5 {background-image: url('img/img5.jpeg'); background-size:cover}
+.album-pic-6 {background-image: url('img/img22.jpeg'); background-size:cover}
+.album-pic-7 {background-image: url('img/img7.jpeg'); background-size:cover}
+.album-pic-8 {background-image: url('img/img9.jpeg'); background-size:cover}
+.album-pic-9 {background-image: url('img/img10.jpeg'); background-size:cover}
+.album-pic-10 {background-image: url('img/img13.jpeg'); background-size:cover}
+.album-pic-11 {background-image: url('img/img12.jpeg'); background-size:cover}
+.album-pic-12 {background-image: url('img/img13.jpeg'); background-size:cover}
+.album-pic-13 {background-image: url('img/img22.jpeg'); background-size:cover}
+.album-pic-14 {background-image: url('img/img2.jpeg'); background-size:cover}
+.info p {text-align: center; margin: 10px 0;}
+.info p:nth-of-type(1) {color: #aaa; font-size: 18px; margin-top: 15px;}
+
+/********** album-details *******************/
+.top-album {width: 500px; margin: 30px auto;}
+.top-album .top-info {width: calc(100% - 200px); height: 180px; border: 1px solid #444; margin: 0 auto;}
+.top-album .top-info .item-title { margin-top: 30px;}
+
+/********** Artists *******************/
+.artist-pic-1 {background: linear-gradient(to right, #e6fffa, #00ffcc);}
+.artist-pic-2 {background: linear-gradient(to right, #e6fffa, #aa80ff);}
+.artist-pic-3 {background: linear-gradient(to right, #e6fffa, #b380ff);}
+.artist-pic-4 {background: linear-gradient(to right, #e6fffa, #df80ff);}
+.artist-pic-5 {background: linear-gradient(to right, #e6fffa, #85e085);}
+.artist-pic-6 {background: linear-gradient(to right, #e6fffa, #ff6666);}
+.artist-pic-7 {background: linear-gradient(to right, #e6fffa, #809fff);}
+.artist-pic-8 {background: linear-gradient(to right, #e6fffa, #d98cb3);}
+.artist-pic-9 {background: linear-gradient(to right, #e6fffa, #66ffff);}
+.artist-pic-10 {background: linear-gradient(to right, #e6fffa, #cccc99);}
+.artist-pic-11 {background: linear-gradient(to right, #e6fffa, #a3a3c2);}
+.artist-pic-12 {background: linear-gradient(to right, #e6fffa, #ff4d4d);}
+div[class^='artist-pic'] .cursive {font-size: 20px; text-align: center; color: #111;
+    position: absolute; top: 82px; left: 13px; width: 85%;}
+div[class^='artist-pic'] {border-radius: 50%;}
+.artist-li .pic a {top: 150px; display: none;}
+.artist-li .pic a:nth-of-type(1) {left: 83px;}
+.artist-li .pic a:nth-of-type(2) {right: 55px;}
+.artist-li .pic a i {color: #777;}
+.artist-li .pic a:hover i {color: #444;}
+.artist-li .pic:hover a {display: block;}
+.artist-li .cursive span {width: 80%; display: inline-block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+
+/********** Songs *******************/
+.table-dark {width: 90%;}
+.table>thead>tr>th {border-bottom: 1px solid #222; font-weight: normal; color: #555;}
+.table>thead>tr>th a {color: #555;}
+.table>thead>tr>th a:hover {color: #888;}
+table, .collection {width: 85%; margin: 30px 0;}
+.table>tbody>tr>td {border-top: 1px solid #222;}
+.table-hover tbody tr:hover td {background-color: #222;}
+td a {display: inline-block; color: #818181;}
+td a:hover { text-decoration: underline; color: #aaa;}
+table .material-icons {margin-left: 10px; cursor: pointer; font-size: 16px; color: #ff6666; vertical-align: text-top;}
+table .material-icons:hover {color: #e60000;}
+table .material-icons.popular {color: yellow;}
+
+/************ inputs *******************/
+.search {margin: 30px 0; max-width: 65%;}
+.search i.material-icons {font-size: 30px; margin-right: 10px; vertical-align: baseline; color: #777;}
+.search:hover i.material-icons {color: #ccc;}
+.search input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    margin: 0;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+    background-color: transparent;
+    border: none;
+}
+/* When the input field gets focus, change its width to 80% */
+.search input[type=text]:focus {width: 60%;}
+input, select {
+    background-color: #444;
+    padding: 7px;
+    border: none;
+    border-radius: 3px;
+}
+.filtering {position: absolute; width: 140px; top: 55px; height: 38px; right: 70px; background-color: #444;}
+.year-filter {width: 120px; position: absolute; left: 05x; top: 0px; height: 38px;}
+.filtering input {position: absolute; width: 30px; top: 0px; height: 38px; right: 15px;}
+.filtering input:hover {border: 1px solid #777;}
+.sorting span {padding-right: 15px;}
+.sorting a {color: #777; border-color: #777;}
+.sorting a:hover {color: #ccc; border-color: #ccc;}
+select {-webkit-appearance: none;}
+select {text-transform:capitalize}
+.form-group {margin-bottom: 25px;}
+.form-group:last-of-type {margin: 35px 0 25px 0;}
+.form-group:last-of-type .col-sm-10 {padding: 0;}
+.form-group button {margin-right: 5px;}
+label {font-weight: normal; line-height: 30px;}
+fieldset {width: 80%; padding: 20px;}
+.btn-outline-primary {color: #007bff; background-color: transparent; background-image: none; border-color: #007bff;}
+.btn-outline-light {color: #ccc; background-color: transparent; background-image: none; border-color: #ccc;}
+.btn-outline-primary:hover {color: #b3b3ff; border-color: #b3b3ff;}
+.btn-outline-light:hover {color: #eee; border-color: #eee;}
+
+/****************** input errors *************/
+.errorlist li, .empty-err {color: #ff6666; padding-bottom: 5px; font-size: 12px;}
+.empty-err {display: inline-block; margin: 10px 0 0 10px; color: #ff6666; font-size: 12px;}
+

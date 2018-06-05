@@ -1,0 +1,9 @@
+{% for field in form %}
+<!-- template for all forms fields -->
+<div class="form-group row">
+    <label for="id_{{ field.name }}" class="col-sm-2 col-form-label">{{ field.label }}</label>
+    {{ field.errors }} <!-- error would be above the field -->
+    {{ field }} <!-- field data -->
+    {{ field.help_text }} <!-- field help text bellow field -->
+</div>
+{% endfor %}

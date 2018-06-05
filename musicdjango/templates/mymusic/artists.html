@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load app_tags %}
+{% block nav_artists%}
+class="active"
+{% endblock %}
+
+<!-- Show Artists in library -->
+{% block content %}
+<div class="wrapper">
+    <h3>My Famous Artists - <span class="book-count">{{ artists | length }} artists</span></h3>
+    {% include "mymusic/search.html" %}
+    <ul class="collection list-inline text-center">
+        {% for artist in artists %}
+        <li class="artist-li">
+            <div title="{{ album.title }}" class="artist-pic-{{forloop.counter}} pic">
+                <!-- Click on it - artist detail: album list following by song lists -->
+                <div class="cursive"><span title="{{ artist.name }}">{{ artist.name|upper }}</span></div>
+                <!--<a href="{% url 'item_delete' artist.id %}?type=Artist&url=artists">-->
+                <!--<i class="material-icons delete">delete</i></a>-->
+                <a href="{% url 'artist_detail' artist.id %}?type=Artist" title="Details">
+                    <i class="material-icons delete">more_horiz</i></a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

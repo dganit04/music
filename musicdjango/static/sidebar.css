@@ -1,0 +1,21 @@
+
+/************ Left navigation **************/
+
+.leftNav {height: 100%; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden;
+    transition: all .3s ease; padding-top: 60px;}
+.leftNav a { text-decoration: none; font-size: 25px; color: #818181; transition: 0.3s;}
+.leftNav a:nth-of-type(2) {vertical-align: middle}
+.active {background-color: #333;}
+.leftNav li { padding: 8px 8px 8px 32px; position: relative; overflow: hidden; white-space: nowrap;}
+.leftNav ul {padding: 0; margin-top: 40px;}
+.leftNav a:hover {color: #f1f1f1;}
+.leftNav .material-icons {margin-left: 10px; cursor: pointer; font-size: 14px;}
+.leftNav a:nth-of-type(2) .material-icons {margin-left: 40px; color: #888; font-size: 20px; margin-top: 4px;}
+.leftNav a:nth-of-type(2) .material-icons:hover {color: #f1f1f1;}
+#closeNav, #openNav {position: absolute; top: 10px; cursor: pointer;}
+#closeNav {position: absolute; top: 10px; right: 25px; font-size: 36px; margin-left: 50px; cursor: pointer;}
+
+@media screen and (max-height: 450px) {
+  .leftNav {padding-top: 15px;}
+  .leftNav a {font-size: 18px;}
+}

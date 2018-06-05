@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load app_tags %}
+{% block nav_index %}
+class="active"
+{% endblock %}
+
+<!-- Show Albums in library -->
+{% block content %}
+<div class="wrapper">
+    <h3>My Album Collection - <span class="book-count">{{ albums | length }} albums</span></h3>
+    {% include "mymusic/search.html" %}
+
+    <form class="form" action="{% url 'index' %}" method="get">{% csrf_token %}
+        <div class="filtering">
+            <select name="year" class="year-filter">
+                <option value="1960">Year: 60s</option>
+                <option value="1970">Year: 70s</option>
+                <option value="1980">Year: 80s</option>
+            </select>
+            <input type="image" src="../../static/img/right.png" alt="Submit"/>
+        </div>
+    </form>
+    <div class="sorting">
+        <span>Sort by:</span>
+        <a href="{% url 'index' %}?id=artist__name" class="btn btn-outline-light">artist</a>
+        <a href="{% url 'index' %}?id=release_date" class="btn btn-outline-light">date</a>
+        <a href="{% url 'index' %}" class="btn btn-outline-light">Clear</a>
+    </div>
+
+
+    <ul class="collection list-inline text-center">
+        {% for album in albums %}
+        <li class="album-li">
+            <div class="album-pic-{{forloop.counter}} pic">
+                <div title="{{ album.title }}" class="title"><span>{{ album.title|upper }}</span></div>
+                <div class="actions">
+                    <!--<a href="{% url 'item_delete' album.id %}?type=Album&url=index">-->
+                    <!--<i class="material-icons delete">delete</i></a>-->
+                    <a href="{% url 'album_detail' album.id %}?type=Album" title="Details">
+                        <i class="material-icons">more_horiz</i></a>
+                </div>
+            </div>
+            <div class="info">
+                <p class=cursive><a href="{% url 'artist_detail' album.id %}?type=Album">{{ album.artist.name | upper }}</a></p>
+                <p class=cursive>{{ album.release_date }}</p>
+            </div>
+            {% endfor %}
+        </li>
+    </ul>
+</div>
+{% endblock %}

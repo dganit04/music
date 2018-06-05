@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load app_tags %}
+<!-- Show artist details -->
+
+{% block content %}
+<div class="detail-container artist-detail">
+    <div class="top-info">
+        <div class="item-title">{{ artist.name | capfirst }}</div>
+        <p class="by">{{ artist.songCount }} song(s)</p>
+        <p>{{ albums | length }} albums</p>
+    </div>
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Song</th>
+            <th scope="col">Album</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for album in albums %}
+            {% if album.songs.count %}
+                {% for song in album.songs %}
+                <tr>
+                    <td>{{ song.title | upper }}</td>
+                    <td>{{ album.title | upper }}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %} <!-- show empty albums -->
+            <tr>
+                <td>---</td>
+                <td>{{ album.title | upper }}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
