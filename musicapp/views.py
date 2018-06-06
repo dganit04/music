@@ -13,12 +13,10 @@ def index(request):
     print 'home '
     albums = Album.objects.all().order_by(sorting)
     if request.GET:  # if form method is 'get' - for sorting by year select
-        print 'submit ', year, type(year)
+        print 'submit sorting ', year, type(year)
         if year:
             int_year = int(year)  # making sure unicode type is an integer
-            print 'int_year ', int_year, type(int_year)
             albums = Album.objects.filter(release_date__year__range=(str(int_year), str(int_year + 9)))
-    print 'albums ', albums
     return render(request, 'mymusic/index.html', {  # show this view when getting to this page
         'albums': albums
     })
@@ -28,7 +26,6 @@ def album_create(request):
     if request.method == 'POST':
         form = AlbumForm(request.POST)
         print 'submit album'
-
         if form.is_valid():  # coming from save button click
             q = Album()
             for each in form:
@@ -103,7 +100,7 @@ def artist_create(request):
             return redirect('artists')  # you won't see 'form' in url
     else:  # if a GET (or any other method) we'll create a blank form
         form = artistForm()
-        print 'init'
+        print 'init Artist detail'
     return render(request, 'mymusic/artist_create.html', {
         'form': form  # render create artist with empty form or with the form we already started to fill
     })
@@ -123,21 +120,19 @@ def prepare_for_album(song_id):
 
 
 def album_detail(request, id):
-    print 'details'
+    print 'album_details'
     a_type = request.GET.get('type')
     if a_type == 'Song':  # coming from songs page
         obj = prepare_for_album(id)  # this is song id, get album/songs from another function
-        obj['album'].className = 'album-pic-' + str(obj['album'].id) + ' pic'
-        print 'detail ', obj['album'].className
+        obj['album'].class_name = 'album-pic-' + str(obj['album'].id) + ' pic'
         album = obj['album']
         songs = obj['songs']
-        album.className = 'album-pic-' + str(album.id) + ' pic'
+        album.class_name = 'album-pic-' + str(album.id) + ' pic'
     else:  # coming from album page (index)
         try:
             album = Album.objects.get(id=id)
             songs = album.song_set.all()
-            album.className = 'album-pic-' + str(album.id) + ' pic'
-            print 'detail ', album.className
+            album.class_name = 'album-pic-' + str(album.id) + ' pic'
         except Album.DoesNotExist:
             raise Http404('This album does not exist, stop trying!')
     return render(request, 'mymusic/album_detail.html', {
@@ -147,6 +142,7 @@ def album_detail(request, id):
 
 
 def prepare_for_artist(my_type, id):
+    print 'artist detail ', my_type, id
     if my_type == 'Song':
         song = Song.objects.get(id=id)
         artist = Artist.objects.get(name=song.artist)
@@ -156,10 +152,11 @@ def prepare_for_artist(my_type, id):
     else:
         artist = Artist.objects.get(id=id)
     artist.songCount = len(artist.song_set.all())
-    print 'prep-f-ar ', artist, artist.songCount, artist.songCount
     return artist
 
+
 def artist_detail(request, id):
+    print 'artist-detail'
     my_type = request.GET.get('type')
     try:
         artist = prepare_for_artist(my_type, id)
@@ -168,7 +165,6 @@ def artist_detail(request, id):
             a.songs = a.song_set.all()
             # if len(a.songs) == 0:
             #     a.songs = [Song(title='---', artist=artist, album=a)]
-            print 'each album ', a, 'songs ', a.songs, len(a.songs)
     except Artist.DoesNotExist:
         raise Http404('This artist does not exist, stop trying!')
     return render(request, 'mymusic/artist_detail.html', {  # gets here at first
@@ -191,7 +187,6 @@ def songs(request):
 
 
 def artists(request):
-    # print 'artists '
     artists = Artist.objects.all().order_by('name')
     return render(request, 'mymusic/artists.html', {
         'artists': artists

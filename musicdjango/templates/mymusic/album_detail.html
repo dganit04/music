@@ -6,7 +6,7 @@
 {% block content %}
 <div class="detail-container">
     <div class="top-album clearfix">
-        <div class="{{album.className}} pull-left"></div>
+        <div class="{{album.class_name}} pull-left"></div>
         <div class="top-info pull-left">
             <div class="item-title">{{ album.title | capfirst }}</div>
             <p><span class="by">by </span> <span class="name">{{ album.artist | capfirst }}</span></p>
@@ -27,7 +27,7 @@
         {% for song in songs %}
         <tr>
             <td>{{ song.title | upper }}</td>
-            <td>{{ song.artist.name | upper }}</td>
+            <td><a href="{% url 'artist_detail' song.id %}?type=Song">{{ song.artist.name | upper }}</a></td>
         </tr>
         {% endfor %}
         </tbody>

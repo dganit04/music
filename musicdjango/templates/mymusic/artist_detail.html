@@ -8,8 +8,10 @@
     <div class="top-info">
         <div class="item-title">{{ artist.name | capfirst }}</div>
         <p class="by">{{ artist.songCount }} song(s)</p>
-        <p>{{ albums | length }} albums</p>
+        <p>{{ albums | length }} album (s)</p>
     </div>
+    {% if artist.songCount %}
+    <h4>All songs: ({{ artist.songCount }})</h4>
     <table class="table table-hover table-dark">
         <thead>
         <tr>
@@ -23,8 +25,7 @@
                 {% for song in album.songs %}
                 <tr>
                     <td>{{ song.title | upper }}</td>
-                    <td>{{ album.title | upper }}
-                    </td>
+                    <td><a href="{% url 'album_detail' song.id %}?type=Song">{{ album.title | upper }}</a></td>
                 </tr>
                 {% endfor %}
             {% else %} <!-- show empty albums -->
@@ -37,5 +38,8 @@
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p>Sorry, this artist has no songs, pls add some, Thanks ton!</p>
+    {% endif %}
 </div>
 {% endblock %}
